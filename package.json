@@ -1,0 +1,30 @@
+{
+  "name": "io-sandbox",
+  "version": "1.0.0",
+  "description": "Baqend Image Optimization Sandbox",
+  "main": "index.js",
+  "scripts": {
+    "dev": "live-server app",
+    "deploy": "baqend deploy --files --file-dir app io-sandbox"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Baqend/io-sandbox.git"
+  },
+  "keywords": [
+    "Baqend",
+    "Image",
+    "Optimization",
+    "CDN"
+  ],
+  "author": "Baqend GmbH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Baqend/io-sandbox/issues"
+  },
+  "homepage": "https://github.com/Baqend/io-sandbox#readme",
+  "devDependencies": {
+    "baqend": "^2.11.0",
+    "live-server": "^1.2.0"
+  }
+}

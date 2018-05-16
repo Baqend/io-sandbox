@@ -35,8 +35,13 @@ body{
     padding-right: 2px;
 }
 
+.image-optimization-wrapper {
+    position: relative;
+}
+
 .image-optimization-table {
     position: absolute;
+    z-index: -1;
     top: 0;
     right: 0;
     font-size: 0.64em;
@@ -60,6 +65,8 @@ body{
 
 .image-optimization-table-cell-right {
     text-align: left;
+    /* Give the windows scrollbar space */
+    padding-right: 28px !important;
 }
 
 .image-optimization-input-container {
@@ -74,7 +81,10 @@ body{
 .image-optimization-image-container {
     height: 500px;
     overflow: auto;
-    z-index: -1;
+}
+
+.image-optimization-image {
     position: relative;
+    z-index: -2;
 }
 
