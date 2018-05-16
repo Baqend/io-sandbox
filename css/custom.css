@@ -1,0 +1,80 @@
+
+.image-optimization-warning {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 500ms, visibility 500ms;
+    transition: opacity 500ms, visibility 500ms, 500ms;
+    display: none;
+}
+
+.image-optimization-warning-visible {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+.image-optimization-button-panel {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 12px;
+    display: table;
+    padding-top: 12px;
+}
+
+.image-optimization-button {
+    text-align: left;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.image-optimization-button-container {
+    padding-top: 4px;
+    padding-right: 2px;
+}
+
+.image-optimization-table {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.64em;
+    width: auto;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.image-optimization-container {
+    text-align: center;
+}
+
+.image-optimization-table-cell-left {
+    text-align: right;
+}
+
+.image-optimization-table-cell-center {
+    max-width: 100px;
+    font-size: 80%;
+    text-align: center;
+}
+
+.image-optimization-table-cell-right {
+    text-align: left;
+}
+
+.image-optimization-input-container {
+    padding-top: 4px;
+}
+
+.image-optimization-input-label {
+    text-align: right;
+    width: 120px;
+}
+
+.image-optimization-image-container {
+    height: 500px;
+    overflow: auto;
+    z-index: -1;
+    position: relative;
+}
+

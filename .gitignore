@@ -1,0 +1,12 @@
+# Ignore IDEA files
+/.idea/copyright/
+/.idea/dictionaries/
+/.idea/libraries/
+/.idea/markdown-navigator/
+/.idea/shelf/
+/.idea/*.xml
+!/.idea/checkstyle-idea.xml
+!/.idea/codeStyleSettings.xml
+!/.idea/compiler.xml
+!/.idea/encodings.xml
+*.iml
