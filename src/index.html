@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="css/bootstrap-baqend.min.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
     <title>Image Optimization Sandbox</title>
 </head>
 
@@ -13,20 +11,20 @@
       <span class="input-group-btn">
         <button class="btn btn-light image-optimization-input-label" type="button">URL:</button>
       </span>
-            <input class="form-control" type="text" placeholder="image URL"
-                   onkeyup="refreshOptimizedImageDelayed()" id="url">
+            <input class="form-control refresh-optimized-image-delayed" type="text" placeholder="image URL"
+                   id="url">
         </div>
         <div class="input-group input-group-sm image-optimization-input-container">
       <span class="input-group-btn">
         <button class="btn btn-light image-optimization-input-label" type="button">Options:</button>
       </span>
-            <input class="form-control" type="text" placeholder="image optimization parameters"
-                   onkeyup="refreshOptimizedImageDelayed()" id="options">
+            <input class="form-control refresh-optimized-image-delayed" type="text" placeholder="image optimization parameters"
+                   id="options">
         </div>
 
         <div class="image-optimization-button-panel">
             <div class="btn-group btn-group-sm image-optimization-button-container">
-                <button class="btn btn-primary" onclick="refreshOptimizedImage('')">raw image</button>
+                <button class="btn btn-primary image-optimization-button" data-io-options=''>raw image</button>
             </div>
             <div class="btn-group btn-group-sm image-optimization-button-container">
                 <button type="button" data-toggle="dropdown" class="btn image-optimization-button dropdown-toggle">
@@ -34,20 +32,20 @@
                     height <span class="caret"></span></button>
                 <ul class="dropdown-menu ">
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'width':undefined,'height':undefined})">none</a></li>
+                           data-io-options='{"width":null,"height":null}'>none</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'width':150,'height':undefined})">width 150px</a></li>
+                           data-io-options='{"width":150,"height":null}'>width 150px</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'width':0.5,'height':undefined})">width 50%</a></li>
+                           data-io-options='{"width":0.5,"height":null}'>width 50%</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'width':undefined,'height':150})">height 150px</a></li>
+                           data-io-options='{"width":null,"height":150}'>height 150px</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'width':undefined,'height':0.5})">height 50%</a></li>
+                           data-io-options='{"width":null,"height":0.5}'>height 50%</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'width':500,'height':500})">width 500px, height 500px</a>
+                           data-io-options='{"width":500,"height":500}'>width 500px, height 500px</a>
                     </li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'width':0.2,'height':0.5})">width 20%, height 50%</a>
+                           data-io-options='{"width":0.2,"height":0.5}'>width 20%, height 50%</a>
                     </li>
                 </ul>
             </div>
@@ -57,19 +55,19 @@
                         class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'quality':undefined})">default</a></li>
+                           data-io-options='{"quality":null}'>default</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'quality':10})">quality 10%</a></li>
+                           data-io-options='{"quality":10}'>quality 10%</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'quality':30})">quality 30%</a></li>
+                           data-io-options='{"quality":30}'>quality 30%</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'quality':50})">quality 50%</a></li>
+                           data-io-options='{"quality":50}'>quality 50%</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'quality':70})">quality 70%</a></li>
+                           data-io-options='{"quality":70}'>quality 70%</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'quality':85})">quality 85%</a></li>
+                           data-io-options='{"quality":85}'>quality 85%</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'quality':100})">quality 100%</a></li>
+                           data-io-options='{"quality":100}'>quality 100%</a></li>
                 </ul>
             </div>
             <div class="btn-group btn-group-sm image-optimization-button-container">
@@ -78,21 +76,21 @@
                         class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'crop':undefined})">none</a></li>
+                           data-io-options='{"crop":null}'>none</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'crop':'500,300'})">crop to 500 x 300</a></li>
+                           data-io-options='{"crop":"500,300"}'>crop to 500 x 300</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'crop':'500,300,x30,y40'})">crop to 500 x 300 (x: 30, y:
+                           data-io-options='{"crop":"500,300,x30,y40"}'>crop to 500 x 300 (x: 30, y:
                         40)</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'crop':'500,300,offset-x30,offset-y40'})">crop to 500 x
+                           data-io-options='{"crop":"500,300,offset-x30,offset-y40"}'>crop to 500 x
                         300 (offset-x:
                         30, offset-y: 40)</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'crop':'0.4,0.5'})">crop to 40% width and 50% height</a>
+                           data-io-options='{"crop":"0.4,0.5"}'>crop to 40% width and 50% height</a>
                     </li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'crop':'0.4,0.5,offset-x30,offset-y40'})">crop to 40%
+                           data-io-options='{"crop":"0.4,0.5,offset-x30,offset-y40"}'>crop to 40%
                         width and 50%
                         height (x: 30, y: 40)</a></li>
                 </ul>
@@ -103,25 +101,25 @@
                         class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'format':undefined})">original</a></li>
+                           data-io-options='{"format":null}'>original</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'format':'gif'})">GIF (Graphics Interchange Format)</a>
+                           data-io-options='{"format":"gif"}'>GIF (Graphics Interchange Format)</a>
                     </li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'format':'png'})">PNG (Portable Network Graphics)</a>
+                           data-io-options='{"format":"png"}'>PNG (Portable Network Graphics)</a>
                     </li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'format':'png8'})">PNG8 (PNG with 8-bit transparency and 256 colors)</a></li>
+                           data-io-options='{"format":"png8"}'>PNG8 (PNG with 8-bit transparency and 256 colors)</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'format':'jpg'})">JPEG</a></li>
+                           data-io-options='{"format":"jpg"}'>JPEG</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'format':'pjpg'})">Progressive JPEG</a></li>
+                           data-io-options='{"format":"pjpg"}'>Progressive JPEG</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'format':'webp'})">WebP</a></li>
+                           data-io-options='{"format":"webp"}'>WebP</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'format':'webpll'})">WebP (Lossless)</a></li>
+                           data-io-options='{"format":"webpll"}'>WebP (Lossless)</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'format':'webply'})">WebP (Lossy)</a></li>
+                           data-io-options='{"format":"webply"}'>WebP (Lossy)</a></li>
                 </ul>
             </div>
             <div class="btn-group btn-group-sm image-optimization-button-container">
@@ -129,9 +127,9 @@
                     auto-WebP<span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'auto':undefined})">off</a></li>
+                           data-io-options='{"auto":null}'>off</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'auto':'webp'})">on</a></li>
+                           data-io-options='{"auto":"webp"}'>on</a></li>
                 </ul>
             </div>
             <div class="btn-group btn-group-sm image-optimization-button-container">
@@ -140,11 +138,11 @@
                         class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'fit':undefined})">none</a></li>
+                           data-io-options='{"fit":null}'>none</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'fit':'bounds'})">bounds</a></li>
+                           data-io-options='{"fit":"bounds"}'>bounds</a></li>
                     <li><a type="button" class="btn dropdown-item image-optimization-button"
-                           onclick="refreshOptimizedImage({'fit':'crop'})">crop</a></li>
+                           data-io-options='{"fit":"crop"}'>crop</a></li>
                 </ul>
             </div>
 
@@ -184,13 +182,10 @@
         </table>
 
         <div class="image-optimization-image-container">
-            <img class="image-optimization-image" src="" alt="An image optimized by Baqend." id="image">
+            <img class="image-optimization-image" alt="An image optimized by Baqend." id="image">
         </div>
     </div>
 </div>
 
-<script src="js/jquery-2.2.4.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/sandbox.js"></script>
 </body>
 </html>
