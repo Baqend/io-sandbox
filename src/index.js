@@ -109,16 +109,11 @@ function updateParameters(providedOptions) {
   }
 }
 
-function refreshOptimizedImageDelayed() {
-  debounce(refreshOptimizedImage, 100)();
-}
-
 function debounce(func, wait, immediate) {
   let timeout;
-  return function () {
-    let context = this,
-      args = arguments;
-    const later = function () {
+  return (...args) => {
+    const context = this;
+    const later = () => {
       timeout = null;
       if (!immediate) func.apply(context, args);
     };
@@ -129,6 +124,7 @@ function debounce(func, wait, immediate) {
   };
 }
 
+const refreshOptimizedImageDelayed = debounce(refreshOptimizedImage, 300);
 
 document.getElementById('url').value = 'https://io-sandbox.app.baqend.com/baqend.png';
 refreshOptimizedImage({ width: 800, height: undefined });
