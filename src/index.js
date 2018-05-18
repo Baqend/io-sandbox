@@ -133,7 +133,7 @@ function debounce(func, wait, immediate) {
 
 const refreshOptimizedImageDelayed = debounce(refreshOptimizedImage, 300);
 
-document.getElementById('url').value = 'https://io-sandbox.app.baqend.com/baqend.png';
+document.getElementById('url').value = 'https://io-sandbox.baqend.com/baqend.jpeg';
 refreshOptimizedImage({ width: 800, height: undefined });
 
 $('body')
