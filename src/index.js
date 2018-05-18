@@ -9,8 +9,8 @@ let oldURL;
 const emptyOptions = '?bqoptimize=1;';
 let sizeRaw;
 
-async function loadImage(isOptimized) {
-  return fetch(isOptimized ? url + options : `${url}?bqoptimize=1`).then((response) => {
+async function loadImage(isOptimized, headersOnly) {
+  return fetch(isOptimized ? url + options : `${url}?bqoptimize=1`, headersOnly && {method: 'HEAD'}).then((response) => {
     const versionName = isOptimized ? 'optimized' : 'raw';
     document.getElementById(`imageInfo-content-type-${versionName}`).innerHTML = getType(response.headers.get('fastly-io-info'), isOptimized);
     document.getElementById(`imageInfo-content-length-${versionName}`).innerHTML = getSize(response.headers.get('fastly-io-info'), isOptimized);
@@ -84,6 +84,7 @@ function updateParameters(providedOptions) {
             if (index > 0) {
                 url = url.substr(0, index) + '.' + value;
                 document.getElementById('url').value = url;
+                loadImage(false, true);
             }
         } else {
             const stringEncodedOption = value ? `;${option}=${value};` : '';
