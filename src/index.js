@@ -52,7 +52,6 @@ function getSize(fastlyHeader, isOptimized) {
     }
     return `${size}KB`;
   }
-  loadImage(true);
   sizeRaw = size;
   return `${size}KB`;
 }
@@ -80,18 +79,26 @@ function updateParameters(providedOptions) {
     for (const option in providedOptions) {
       if (providedOptions.hasOwnProperty(option)) {
         const value = providedOptions[option];
-        const stringEncodedOption = value ? `;${option}=${value};` : '';
-
-        const idxStart = options.indexOf(option);
-        if (idxStart > -1) {
-          let idxUntil = options.substring(idxStart).indexOf(';') + 1;
-          idxUntil = idxUntil > 0 ? idxUntil : options.substring(idxStart).indexOf('&') + 1;
-          idxUntil = idxUntil > 0 ? idxStart + idxUntil : options.length;
-          options = options.substring(0, idxStart) + stringEncodedOption + options.substring(idxUntil, options.length);
+        if (option === 'file-extension') {
+          let index = url.lastIndexOf('.');
+            if (index > 0) {
+                url = url.substr(0, index) + '.' + value;
+                document.getElementById('url').value = url;
+            }
         } else {
-          options += stringEncodedOption;
+            const stringEncodedOption = value ? `;${option}=${value};` : '';
+
+            const idxStart = options.indexOf(option);
+            if (idxStart > -1) {
+                let idxUntil = options.substring(idxStart).indexOf(';') + 1;
+                idxUntil = idxUntil > 0 ? idxUntil : options.substring(idxStart).indexOf('&') + 1;
+                idxUntil = idxUntil > 0 ? idxStart + idxUntil : options.length;
+                options = options.substring(0, idxStart) + stringEncodedOption + options.substring(idxUntil, options.length);
+            } else {
+                options += stringEncodedOption;
+            }
+            options = options.replace(';;', ';');
         }
-        options = options.replace(';;', ';');
       }
     }
   } else if (typeof providedOptions === 'string') {
@@ -102,7 +109,7 @@ function updateParameters(providedOptions) {
     options = '';
   }
 
-  if (url && url.toLowerCase().indexOf('app.baqend.com') < 0) {
+  if (url && url.toLowerCase().indexOf('app.baqend.com') < 0 && url.toLowerCase().indexOf('io-sandbox.baqend.com/') < 0) {
     document.getElementById('warning').classList.add('image-optimization-warning-visible');
   } else {
     document.getElementById('warning').classList.remove('image-optimization-warning-visible');

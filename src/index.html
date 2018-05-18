@@ -24,7 +24,14 @@
 
         <div class="image-optimization-button-panel">
             <div class="btn-group btn-group-sm image-optimization-button-container">
-                <button class="btn btn-primary image-optimization-button" data-io-options=''>raw image</button>
+                <button id="raw-image-button" type="button" data-toggle="dropdown" class="btn btn-primary image-optimization-button dropdown-toggle">
+                    raw image <span class="caret"></span></button>
+                <ul class="dropdown-menu ">
+                    <li><a type="button" class="btn dropdown-item image-optimization-button"
+                           data-io-options='{"file-extension": "png"}'>PNG</a></li>
+                    <li><a type="button" class="btn dropdown-item image-optimization-button"
+                           data-io-options='{"file-extension": "jpeg"}'>JPEG</a></li>
+                </ul>
             </div>
             <div class="btn-group btn-group-sm image-optimization-button-container">
                 <button type="button" data-toggle="dropdown" class="btn image-optimization-button dropdown-toggle">
