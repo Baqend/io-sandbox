@@ -147,3 +147,13 @@ $('body')
   .on('keyup', '.refresh-optimized-image-delayed', (e) => {
     refreshOptimizedImageDelayed();
   });
+
+
+function receiveMessage(event)
+{
+    if (event.data.type === 'webpackOk') {
+        return;
+    }
+    refreshOptimizedImage(event.data);
+}
+window.addEventListener("message", receiveMessage, false);
